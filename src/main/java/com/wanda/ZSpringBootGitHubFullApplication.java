@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Example;
 
 import com.wanda.entity.Student;
 import com.wanda.repository.StudentRepository;
@@ -27,15 +26,16 @@ public class ZSpringBootGitHubFullApplication {
 
 		StudentRepository std = context.getBean(StudentRepository.class);
 
-//      Pagination
+		Student s = new Student();
+		s.setActSw("Y");
 
-//	    here first argument is page number and second is number of item
-		PageRequest pg = PageRequest.of(0, 2);
-		Page<Student> all = std.findAll(pg);
+//		soft delete operation
+		Example<Student> ex = Example.of(s);
 
-		List<Student> contents = all.getContent();
+		List<Student> all = std.findAll(ex);
 
-		contents.forEach(System.out::println);
+		all.forEach(System.out::println);
+
 	}
 
 }

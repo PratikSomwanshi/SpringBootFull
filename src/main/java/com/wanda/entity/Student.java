@@ -29,6 +29,10 @@ public class Student {
 	@Column(name = "STUDENT_MARKS")
 	private Integer marks;
 
+//  Soft Delete Field
+	@Column(name = "ACTIVE_SWITCH")
+	private String actSw;
+
 //	Timestamp fields
 //	updatable = false will only update the value when first time object created
 	@CreationTimestamp
