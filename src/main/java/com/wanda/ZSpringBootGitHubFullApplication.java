@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.wanda.entity.Student;
 import com.wanda.repository.StudentRepository;
@@ -26,19 +27,15 @@ public class ZSpringBootGitHubFullApplication {
 
 		StudentRepository std = context.getBean(StudentRepository.class);
 
-//      QueryByExample
-//		Its only available on JPARepository
+//      Pagination
 
-		Student s = new Student();
-		s.setGender("male");
+//	    here first argument is page number and second is number of item
+		PageRequest pg = PageRequest.of(0, 2);
+		Page<Student> all = std.findAll(pg);
 
-		Example<Student> ex = Example.of(s);
+		List<Student> contents = all.getContent();
 
-		List<Student> all = std.findAll(ex);
-
-		// This will only show result who have male gender
-		all.forEach(System.out::println);
-
+		contents.forEach(System.out::println);
 	}
 
 }
