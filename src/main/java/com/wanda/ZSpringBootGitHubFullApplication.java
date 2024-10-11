@@ -1,7 +1,5 @@
 package com.wanda;
 
-import java.util.List;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -25,18 +23,11 @@ public class ZSpringBootGitHubFullApplication {
 
 		StudentRepository std = context.getBean(StudentRepository.class);
 
-//		Student s = new Student(1, "rohan", "male", 94);
-//		Student s1 = new Student(2, "domino", "female", 94);
-//		Student s2 = new Student(3, "cable", "male", 94);
-//		Student s3 = new Student(4, "deadpool", "male", 94);
-//
-//		List<Student> stds = Arrays.asList(s, s1, s2, s3);
+//		custom query
 
-//		std.save(s);
+//		List<Student> stds = std.getAll();
 
-//		std.saveAll(stds);
-
-		List<Student> stds = std.findByGenderAndMarksGreaterThanEqual("male", 90);
+		List<Student> stds = std.getAllHQL();
 
 		stds.forEach(System.out::println);
 
