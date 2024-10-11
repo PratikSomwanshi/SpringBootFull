@@ -1,5 +1,10 @@
 package com.wanda.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -23,4 +28,15 @@ public class Student {
 	private String gender;
 	@Column(name = "STUDENT_MARKS")
 	private Integer marks;
+
+//	Timestamp fields
+//	updatable = false will only update the value when first time object created
+	@CreationTimestamp
+	@Column(name = "CREATED_AT", updatable = false)
+	private LocalDateTime crDate;
+
+//	insertable = false will only update the value when update on object happen
+	@UpdateTimestamp
+	@Column(name = "UPDATED_AT", insertable = false)
+	private LocalDateTime upDate;
 }
