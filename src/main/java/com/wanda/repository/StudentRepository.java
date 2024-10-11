@@ -2,12 +2,14 @@ package com.wanda.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
 import com.wanda.entity.Student;
 
-public interface StudentRepository extends CrudRepository<Student, Integer> {
+// JpaRepository extends CrudRepository and PagingAndSortingRepository, QueryByExample providing additional JPA-related methods.
+
+public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 	// This method retrieves a list of Student objects where the gender matches the
 	// specified value and the marks are greater than or equal to the provided

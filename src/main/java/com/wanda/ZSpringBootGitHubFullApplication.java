@@ -1,8 +1,11 @@
 package com.wanda;
 
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.domain.Example;
 
 import com.wanda.entity.Student;
 import com.wanda.repository.StudentRepository;
@@ -23,13 +26,18 @@ public class ZSpringBootGitHubFullApplication {
 
 		StudentRepository std = context.getBean(StudentRepository.class);
 
-//		custom query
+//      QueryByExample
+//		Its only available on JPARepository
 
-//		List<Student> stds = std.getAll();
+		Student s = new Student();
+		s.setGender("male");
 
-		List<Student> stds = std.getAllHQL();
+		Example<Student> ex = Example.of(s);
 
-		stds.forEach(System.out::println);
+		List<Student> all = std.findAll(ex);
+
+		// This will only show result who have male gender
+		all.forEach(System.out::println);
 
 	}
 
