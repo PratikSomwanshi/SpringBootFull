@@ -1,7 +1,14 @@
 package com.wanda;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.wanda.entity.Student;
+import com.wanda.repository.StudentRepository;
 
 //@SpringBootApplication is a key annotation in Spring Boot that marks the main class of a Spring Boot application. It is essentially a convenience annotation that combines several other annotations that are commonly used when creating a Spring Boot application. Here’s a breakdown of what it does:
 
@@ -15,7 +22,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ZSpringBootGitHubFullApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZSpringBootGitHubFullApplication.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(ZSpringBootGitHubFullApplication.class, args);
+
+		StudentRepository std = context.getBean(StudentRepository.class);
+
+		Student s = new Student(1, "rohan", "male", 94);
+		Student s1 = new Student(2, "domino", "female", 94);
+		Student s2 = new Student(3, "cable", "male", 94);
+		Student s3 = new Student(4, "deadpool", "male", 94);
+
+		List<Student> stds = Arrays.asList(s, s1, s2, s3);
+
+//		std.save(s);
+
+		std.saveAll(stds);
+
 	}
 
 }

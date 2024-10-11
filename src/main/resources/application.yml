@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: SpringDataJPA3
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/COLLEGE_DB_JPA
+    username: root
+    password: 2002
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
