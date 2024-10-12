@@ -1,11 +1,11 @@
 package com.wanda;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.data.domain.Example;
 
 import com.wanda.entity.Student;
 import com.wanda.repository.StudentRepository;
@@ -26,15 +26,13 @@ public class ZSpringBootGitHubFullApplication {
 
 		StudentRepository std = context.getBean(StudentRepository.class);
 
-		Student s = new Student();
-		s.setActSw("Y");
+		Student s = new Student("rohan", "male", 94, "Y");
+		Student s1 = new Student("domino", "female", 94, "Y");
+		Student s2 = new Student("cable", "male", 94, "Y");
+		Student s3 = new Student("deadpool", "male", 94, "N");
+		List<Student> stds = Arrays.asList(s, s1, s2, s3);
 
-//		soft delete operation
-		Example<Student> ex = Example.of(s);
-
-		List<Student> all = std.findAll(ex);
-
-		all.forEach(System.out::println);
+		std.saveAll(stds);
 
 	}
 
